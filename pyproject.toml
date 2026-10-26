@@ -1,0 +1,27 @@
+[project]
+name = "agno-projects"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "ashishpatel26", email = "shriganesh.patel@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "ag-ui-protocol>=1.0.0",
+    "agno>=3.1.10",
+    "chromadb>=1.5.9",
+    "fastapi>=0.162.0",
+    "ollama>=0.6.3",
+    "openai>=3.37.0",
+    "python-multipart>=0.0.32",
+    "sqlalchemy[asyncio]>=2.1.6",
+    "yfinance>=1.7.0",
+]
+
+[project.scripts]
+agno-projects = "agno_projects:main"
+
+[build-system]
+requires = ["uv_build>=0.13.1,<0.14.0"]
+build-backend = "uv_build"
