@@ -2,6 +2,12 @@
 
 This guide covers setup for [`15-Knowledge-Graph-with-Agent.py`](15-Knowledge-Graph-with-Agent.py), an agent whose long-term memory is a **temporal knowledge graph**. Everything runs on your machine: you need no cloud API keys, and no data leaves your computer.
 
+## Architecture
+
+![Architecture diagram: Agno agent calls save_episode and search_memory on Graphiti, which extracts with Ollama and stores in FalkorDB](assets/15-architecture.png)
+
+Request flow:
+
 ```mermaid
 flowchart LR
     U([User]) <--> A[Agno Agent<br/>qwen3.5-4b via Ollama]
