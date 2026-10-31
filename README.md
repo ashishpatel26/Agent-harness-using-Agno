@@ -54,6 +54,8 @@ flowchart LR
 
 ### Lesson 15: Agno + Graphiti + FalkorDB + Ollama
 
+**Full setup guide:** [`15-Knowledge-Graph-with-Agent.md`](15-Knowledge-Graph-with-Agent.md)
+
 The agent stores facts as Graphiti *episodes*. Graphiti pulls out entities and relationships with a local Ollama model, embeds them with `nomic-embed-text`, and writes them to FalkorDB. Answers then come from a hybrid graph search. Nothing leaves your machine. Graphiti reaches Ollama through its OpenAI-compatible `/v1` endpoint, so no OpenAI key is needed.
 
 ```bash
