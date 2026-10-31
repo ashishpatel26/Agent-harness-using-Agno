@@ -18,6 +18,16 @@ flowchart LR
 | **Ollama** | LLM for the agent and for extraction, plus embeddings | `localhost:11434` |
 | **FalkorDB** | Graph database (Redis protocol) that stores nodes and edges | container, `localhost:6379` (UI on `:3000`) |
 
+## Demo results
+
+**Agent run.** The agent saves the fact with `save_episode`, then answers the follow-up question from the graph with `search_memory`:
+
+![Agent run in the terminal: save_episode, then search_memory answers the question](assets/15-agent-run.png)
+
+**Knowledge graph in FalkorDB** (UI at `localhost:3000`, graph `agno_kg`). Graphiti extracted 4 entities (Ashish, Opulence Group, Agno, Graphiti) and created `RELATES_TO` fact edges between them. Each brown *Episodic* node is one saved episode, with `MENTIONS` edges to the entities it contains. Totals: 6 nodes, 14 edges.
+
+![FalkorDB browser showing the agno_kg graph with entity and episodic nodes](assets/15-falkordb-graph.png)
+
 ---
 
 ## 1. Prerequisites
