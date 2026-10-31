@@ -7,3 +7,5 @@ db/
 .remember/
 tmp/
 agent-ui/
+.vscode/
+session_memory.json

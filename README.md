@@ -49,6 +49,46 @@ flowchart LR
 | 11 | [`11-Multi-Agent-team.py`](11-Multi-Agent-team.py) | **Teams** | Bull vs. bear analysts, with a lead that writes the verdict |
 | 12 | [`12-Multi-Agent-Sequencial-Workflow.py`](12-Multi-Agent-Sequencial-Workflow.py) | **Workflows** | A step-by-step research pipeline with explicit data flow |
 | 13 | [`13-Agentos-AGUI.py`](13-Agentos-AGUI.py) | **AgentOS + AG-UI** | Serve an agent as an API with a chat UI protocol |
+| 14 | [`14-AgentUI.py`](14-AgentUI.py) | **AgentOS multi-agent** | Serve web and finance agents for Agent UI / os.agno.com |
+| 15 | [`15-Knowledge-Graph-with-Agent.py`](15-Knowledge-Graph-with-Agent.py) | **Knowledge graph memory** | Agno + Graphiti + FalkorDB + Ollama: fully local temporal knowledge graph |
+
+### Lesson 15: Agno + Graphiti + FalkorDB + Ollama
+
+The agent stores facts as Graphiti *episodes*. Graphiti pulls out entities and relationships with a local Ollama model, embeds them with `nomic-embed-text`, and writes them to FalkorDB. Answers then come from a hybrid graph search. Nothing leaves your machine. Graphiti reaches Ollama through its OpenAI-compatible `/v1` endpoint, so no OpenAI key is needed.
+
+```bash
+podman run -d --name falkordb -p 6379:6379 -p 3000:3000 falkordb/falkordb   # or docker; graph UI at http://localhost:3000
+ollama pull nomic-embed-text
+uv run python 15-Knowledge-Graph-with-Agent.py
+```
+
+Sample output (about 30 s end to end on a 4B model):
+
+```text
+Message:    Remember: Ashish works at Opulence Group as an AI engineer.
+            He is building a tax-compliance agent using Agno and Graphiti.
+Tool call:  save_episode(name=Ashish at Opulence Group, content=...)
+Response:   I have saved that information about Ashish...
+
+Message:    What is Ashish building, and with which tools?
+Tool call:  search_memory(query=Ashish building project tools)
+Response:   Ashish is building a tax-compliance agent. He is working on this project at
+            Opulence Group as an AI engineer and is using Agno and Graphiti as the main tools.
+```
+
+Edges stored in FalkorDB (graph `agno_kg`):
+
+| From | To | Fact |
+|---|---|---|
+| Ashish | Opulence Group | Ashish works at Opulence Group as an AI engineer building a tax-compliance agent using Agno and Graphiti |
+| Ashish | Agno | Ashish is building a tax-compliance agent using Agno |
+| Ashish | Graphiti | Ashish is building a tax-compliance agent using Graphiti |
+
+> Qwen3.5 is a thinking model. The script turns thinking off (`reasoning_effort="none"` for Graphiti, `think: False` for Agno); with thinking on, each extraction call took about 8 minutes.
+
+## Capstone project: Tax Compliance A2A
+
+[**`tax-compliance-a2a/`**](tax-compliance-a2a/) puts all 14 lessons into one system: a "have your agent call our agent" tax compliance network. An orchestrator team routes to five specialist agents, every number comes from a deterministic tax engine, filing needs human approval, and the whole network is served over **A2A** and **MCP** so other agents can call it.
 
 ### Storage vs. memory vs. state vs. learning
 

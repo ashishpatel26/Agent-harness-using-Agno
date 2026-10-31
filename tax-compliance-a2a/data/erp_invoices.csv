@@ -1,0 +1,9 @@
+invoice_id,date,customer,state,tax_code,amount,tax_charged,cert_id
+INV-0999,2026-08-28,Northwind Retail,CA,TPP-GEN,400.00,29.00,
+INV-1001,2026-09-02,Northwind Retail,CA,TPP-GEN,1000.00,72.50,
+INV-1002,2026-09-05,Contoso Labs,NY,SW-SAAS,500.00,20.00,
+INV-1003,2026-09-09,Fabrikam Inc,TX,TPP-GEN,2000.00,100.00,
+INV-1004,2026-09-14,Tailspin Outfitters,WA,CLOTH-GEN,300.00,21.00,
+INV-1005,2026-09-18,Lone Star School District,TX,TPP-GEN,5000.00,0.00,EX-1001
+INV-1006,2026-09-22,Northwind Retail,CA,FOOD-GROC,250.00,0.00,
+INV-1007,2026-09-27,Woodgrove Hardware,FL,HARDWARE,400.00,24.00,

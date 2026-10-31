@@ -1,0 +1,20 @@
+{
+  "EX-1001": {
+    "customer": "Lone Star School District",
+    "reason": "Government / public school purchases",
+    "states": ["TX", "WA"],
+    "expires": "2027-12-31"
+  },
+  "EX-1002": {
+    "customer": "Fabrikam Inc",
+    "reason": "Resale",
+    "states": ["TX"],
+    "expires": "2025-06-30"
+  },
+  "EX-1003": {
+    "customer": "Contoso Labs",
+    "reason": "Resale",
+    "states": ["NY", "CA"],
+    "expires": "2028-03-31"
+  }
+}
