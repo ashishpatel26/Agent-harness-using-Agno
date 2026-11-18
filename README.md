@@ -51,6 +51,7 @@ flowchart LR
 | 13 | [`13-Agentos-AGUI.py`](13-Agentos-AGUI.py) | **AgentOS + AG-UI** | Serve an agent as an API with a chat UI protocol |
 | 14 | [`14-AgentUI.py`](14-AgentUI.py) | **AgentOS multi-agent** | Serve web and finance agents for Agent UI / os.agno.com |
 | 15 | [`15-Knowledge-Graph-with-Agent.py`](15-Knowledge-Graph-with-Agent.py) | **Knowledge graph memory** | Agno + Graphiti + FalkorDB + Ollama: fully local temporal knowledge graph |
+| 16 | [`16-Change-Data-Capture-with-Agent.py`](16-Change-Data-Capture-with-Agent.py) | **Change Data Capture** | SQLite triggers log every change; the agent reads only new events, flags risky ones. [Article](16-Change-Data-Capture-article.md) |
 
 ### Lesson 15: Agno + Graphiti + FalkorDB + Ollama
 
