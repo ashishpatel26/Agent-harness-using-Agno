@@ -52,6 +52,7 @@ flowchart LR
 | 14 | [`14-AgentUI.py`](14-AgentUI.py) | **AgentOS multi-agent** | Serve web and finance agents for Agent UI / os.agno.com |
 | 15 | [`15-Knowledge-Graph-with-Agent.py`](15-Knowledge-Graph-with-Agent.py) | **Knowledge graph memory** | Agno + Graphiti + FalkorDB + Ollama: fully local temporal knowledge graph |
 | 16 | [`16-Change-Data-Capture-with-Agent.py`](16-Change-Data-Capture-with-Agent.py) | **Change Data Capture** | SQLite triggers log every change; the agent reads only new events, flags risky ones. [Article](16-Change-Data-Capture-article.md) |
+| 17 | [`17-Agentic-Sandbox-with-E2B.py`](17-Agentic-Sandbox-with-E2B.py) | **Agentic sandbox** | Each agent runs its code in its own E2B microVM; isolation is checked, and sandboxes are killed afterwards. Needs `E2B_API_KEY` |
 
 ### Lesson 15: Agno + Graphiti + FalkorDB + Ollama
 
