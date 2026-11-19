@@ -51,6 +51,17 @@ def sandboxed_agent(name: str, role: str) -> tuple[Agent, E2BTools]:
     return agent, box
 
 
+def show_sandbox_use(agent: Agent, box: E2BTools, run) -> None:
+    """Print every tool call the agent made and which sandbox ran it."""
+    calls = run.tools or []
+    if not calls:
+        print(f"[{agent.name}] WARNING: no sandbox used - answer was not computed")
+    for call in calls:
+        print(f"[{agent.name}] sandbox {box.sandbox.sandbox_id} ran {call.tool_name}")
+        print(f"    code:   {(call.tool_args or {}).get('code', call.tool_args)}")
+        print(f"    output: {str(call.result)[:200]}")
+
+
 def check_isolation(a: E2BTools, b: E2BTools) -> None:
     """No LLM involved: prove the two sandboxes don't share a filesystem."""
     path = "/home/user/analyst_only.txt"
@@ -83,13 +94,17 @@ if __name__ == "__main__":
             "Compute the total, the mean and the best month (1-based index)."
         )
         analysis = analyst.run(task)
-        print(f"\n--- {analyst.name} ---\n{analysis.content}")
+        print(f"\n--- {analyst.name} ---")
+        show_sandbox_use(analyst, analyst_box, analysis)
+        print(analysis.content)
 
         verdict = checker.run(
             f"Task: {task}\nAnother agent reported:\n{analysis.content}\n"
             "Recompute everything in your sandbox and say CONFIRMED or MISMATCH, with the numbers."
         )
-        print(f"\n--- {checker.name} ---\n{verdict.content}")
+        print(f"\n--- {checker.name} ---")
+        show_sandbox_use(checker, checker_box, verdict)
+        print(verdict.content)
     finally:
         for box in boxes:  # sandboxes bill while alive
             box.sandbox.kill()
